@@ -13,13 +13,11 @@ import { GlobalProvider } from "./context/GlobalState"
 function App() {
   return (
     <GlobalProvider>
-      <ThemeProvider theme={createTheme()}>
           <Nav />
           <Balance />
           <IncomeExpenses />
           <TransactionList />
           <AddTransaction />
-      </ThemeProvider>
     </GlobalProvider>
   );
 }
