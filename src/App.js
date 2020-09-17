@@ -9,16 +9,25 @@ import { AddTransaction } from "./components/AddTransaction"
 
 // Context
 import { GlobalProvider } from "./context/GlobalState"
-import 'rsuite/dist/styles/rsuite-dark.css'
+
+//Styling
+import { Content, FlexboxGrid, Panel } from 'rsuite'
+// import 'rsuite/dist/styles/rsuite-dark.css'
 import 'rsuite/dist/styles/rsuite-default.css'
 function App() {
   return (
     <GlobalProvider>
-          <Nav />
-          <Balance />
-          <IncomeExpenses />
-          <TransactionList />
-          <AddTransaction />
+    <Nav />
+      <Content>
+        <FlexboxGrid justify="center">
+          <FlexboxGrid.Item colspan={12}>
+              <Balance />
+              <IncomeExpenses />
+              <TransactionList />
+              <AddTransaction />
+          </FlexboxGrid.Item>
+        </FlexboxGrid>
+      </Content>
     </GlobalProvider>
   );
 }
