@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { GlobalContext } from '../context/GlobalState'
-import { Form, Input,  Container, Header, FlexboxGrid, Whisper, Tooltip, Button, InputGroup } from 'rsuite'
+import { Form, Input,  Divider, Container, Header, FlexboxGrid, Whisper, Tooltip, Button, InputGroup } from 'rsuite'
 
 export const AddTransaction = () => {
     const { addTransaction } = useContext(GlobalContext)
@@ -21,21 +21,14 @@ export const AddTransaction = () => {
       }
       addTransaction(newTransaction())
     }
-  //   <InputGroup inside style={styles}>
-  //   <InputGroup.Addon>$</InputGroup.Addon>
-  //   <Input />
-  //   <InputGroup.Addon>.00</InputGroup.Addon>
-  // </InputGroup>
-  // <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Enter amount..." />
+
     return (
         <>
         <Container>
         <FlexboxGrid justify="center">
           <FlexboxGrid.Item colspan={12}>
             <Header justify='end'>
-              <FlexboxGrid justify='center'>
-                <h3 >Add New Transaction</h3>
-              </FlexboxGrid>
+                <Divider><h4> Add New Transaction </h4></Divider>
             </Header>
         <Form onSubmit={onSubmit}>
           <div className="form-control">
@@ -50,7 +43,6 @@ export const AddTransaction = () => {
             <Container>
             Amount
             </Container>
-            
             <InputGroup  value={amount} onChange={(e) => setAmount(e.target.value)} inside>
               <InputGroup.Addon>$</InputGroup.Addon>
             <Whisper trigger="focus" speaker={<Tooltip>Required: Negative (-) Expense, Positive (+) Income</Tooltip>}>
@@ -60,7 +52,7 @@ export const AddTransaction = () => {
             </InputGroup>
           </div>
           <FlexboxGrid justify='center'>
-          <Button style={{marginTop: '5%'}} className="btn">Add transaction</Button>
+            <button style={{marginTop: '5%'}} onSubmit={onSubmit}>Add transaction</button>
           </FlexboxGrid>
         </Form>
         </FlexboxGrid.Item>
