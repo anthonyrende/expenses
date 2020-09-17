@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { GlobalContext } from '../context/GlobalState'
-import { Form, Input,  Container, Header, HelpBlock, Whisper, Tooltip, Button, InputGroup } from 'rsuite'
+import { Form, Input,  Container, Header, FlexboxGrid, Whisper, Tooltip, Button, InputGroup } from 'rsuite'
 
 export const AddTransaction = () => {
     const { addTransaction } = useContext(GlobalContext)
@@ -30,9 +30,13 @@ export const AddTransaction = () => {
     return (
         <>
         <Container>
-        <Header>
-        <h3>Add new transaction</h3>
-        </Header>
+        <FlexboxGrid justify="center">
+          <FlexboxGrid.Item colspan={12}>
+            <Header justify='end'>
+              <FlexboxGrid justify='center'>
+                <h3 >Add New Transaction</h3>
+              </FlexboxGrid>
+            </Header>
         <Form onSubmit={onSubmit}>
           <div className="form-control">
             <label htmlFor="text">Name of item</label>
@@ -55,8 +59,12 @@ export const AddTransaction = () => {
               <InputGroup.Addon>.00</InputGroup.Addon>
             </InputGroup>
           </div>
-          <Button className="btn">Add transaction</Button>
+          <FlexboxGrid justify='center'>
+          <Button style={{marginTop: '5%'}} className="btn">Add transaction</Button>
+          </FlexboxGrid>
         </Form>
+        </FlexboxGrid.Item>
+        </FlexboxGrid>
         </Container>
       </>
     )
