@@ -18,40 +18,41 @@ export const Transaction = ({ transaction }) => {
         return (
           <span
             style={{
-              paddingLeft: 15,
+            //   paddingRight: 15,
               color: transaction < 0 ? 'red' : 'green'
             }}
           >
-            <span>{transaction > 0 ? '+' : '-'}${Math.abs(transaction) }</span>
+            <span>{transaction > 0 ? <Icon icon="plus"/> : <Icon icon="minus"/>}${Math.abs(transaction) }</span>
           </span>
         );
       }
     // console.log(context.transactions);
     const renderIcon = (transaction) => {
-        return transaction < 0 ? "minus-square"  : 'plus-square'
+        return transaction < 0 ? "minus-square-o"  : 'plus-square-o'
       }
       const renderColor = (transaction) => {
        const styleObj = {
             paddingRight: "15%",
-            color:  transaction < 0 ? 'red' : 'green',
+            color:  transaction < 0 ? '#eb3626' : '#5ea83e',
             // textAlign: "center",
             // borderRight: transaction < 0 ? "5 solid red":  "5 solid green";
         }
         return styleObj
       }
     return (
+        <Container>
         <FlexboxGrid justify="space-between" >
-            <Icon icon={renderIcon(transaction.amount)} style={renderColor(transaction.amount)} />
-                {transaction.text}
-                <span style={{paddingLeft:"5%"}}>
+            <span style={{paddingLeft:"5%"}}>
                 {renderTransaction(transaction.amount)}
-                </span>
+            </span>
+                {transaction.text}
                 <ButtonToolbar>
-                    <ButtonGroup vertical >
+                    <ButtonGroup vertical style={{margin:5}}>
                         <Button active size='xs' appearance='ghost'>Edit</Button>
                         <Button active size='xs' onClick={() => deleteTransaction(transaction.id)} appearance='ghost'>Delete</Button>
                     </ButtonGroup>
                 </ButtonToolbar>
         </FlexboxGrid>
+        </Container>
     )
 }

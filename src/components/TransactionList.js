@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { GlobalState, GlobalContext } from "../context/GlobalState"
 import { Transaction } from './Transaction'
 
-import { Icon, Input, List, Container, Header, FlexboxGrid, Whisper, Tooltip, Button, InputGroup } from 'rsuite'
+import { Icon, Panel, List, Container, Header, FlexboxGrid, Whisper, Tooltip, Button, InputGroup, Divider } from 'rsuite'
 
 
 export const TransactionList = () => {
@@ -11,12 +11,13 @@ export const TransactionList = () => {
 
     // console.log(context.transactions);
     const renderIcon = (transaction) => {
-        return transaction < 0 ? "minus-square"  : 'plus-square'        
+        return transaction < 0 ? "minus-square-o"  : 'plus-square-o'        
       }
       const renderColor = (transaction) => {
        const styleObj = {
             // fontSize: 14,
-            color:  transaction < 0 ? 'red' : 'green',
+            borderLeft:  transaction < 0 ? '12px solid #f44336' : '12px solid #5ea83e',
+            borderRadius:7,
             // textAlign: "center",
             // borderRight: transaction < 0 ? "5 solid red":  "5 solid green";
         }
@@ -26,16 +27,18 @@ export const TransactionList = () => {
         <Container style={{marginBottom: '5%'}}>
             <FlexboxGrid justify="center">
                 <FlexboxGrid.Item colspan={12}>
-                    <h3>Recent History</h3>
+                    <h4 style={{textAlign:'center'}}>Recent History</h4>
+                    {transactions.map(transaction => (
+                        <>
                         <List hover>
-                        {transactions.map(transaction => (
-                            <List.Item>
+                            <List.Item  style={renderColor(transaction.amount)}>
                                 <Transaction key={transaction.id} transaction={transaction}/>
                             </List.Item>
+                            </List>
+                            </>
                                 )
                             )
                         }
-                        </List>
                 </FlexboxGrid.Item>
             </FlexboxGrid>
         </Container>

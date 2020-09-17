@@ -20,7 +20,7 @@ function App() {
     <Nav />
       <Content>
         <FlexboxGrid justify="center">
-          <FlexboxGrid.Item colspan={12}>
+          <FlexboxGrid.Item colspan={12} md={6}>
               <Balance />
               <IncomeExpenses />
               <TransactionList />
