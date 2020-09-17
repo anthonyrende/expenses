@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { GlobalContext } from '../context/GlobalState'
-import { Form, Input,  Container, Header, InputNumber, Content, Button, InputGroup } from 'rsuite'
+import { Form, Input,  Container, Header, HelpBlock, Whisper, Tooltip, Button, InputGroup } from 'rsuite'
 
 export const AddTransaction = () => {
     const { addTransaction } = useContext(GlobalContext)
@@ -35,22 +35,25 @@ export const AddTransaction = () => {
         </Header>
         <Form onSubmit={onSubmit}>
           <div className="form-control">
-            <label htmlFor="text">Text</label>
-            <InputGroup value={text}  onChange={(e) => setText(e.target.value)}>
-            <Input placeholder="Enter text..." />
-            </InputGroup>
+            <label htmlFor="text">Name of item</label>
+              <InputGroup value={text}  onChange={(e) => setText(e.target.value)}>
+                <Whisper trigger="focus" speaker={<Tooltip>Required: Enter a transaction name</Tooltip>}>
+              <Input placeholder="Enter text..." />
+                </Whisper>
+              </InputGroup>
           </div>
           <div className="form-control">
-            <label htmlFor="amount"
-              >Amount <br />
-              (negative - expense, positive - income)</label
-            >
+            <Container>
+            Amount
+            </Container>
             
             <InputGroup  value={amount} onChange={(e) => setAmount(e.target.value)} inside>
-            <InputGroup.Addon>$</InputGroup.Addon>
-            <Input placeholder="Enter amount..." />
-            <InputGroup.Addon>.00</InputGroup.Addon>
-          </InputGroup>
+              <InputGroup.Addon>$</InputGroup.Addon>
+            <Whisper trigger="focus" speaker={<Tooltip>Required: Negative (-) Expense, Positive (+) Income</Tooltip>}>
+              <Input placeholder="Enter amount..." />
+            </Whisper>
+              <InputGroup.Addon>.00</InputGroup.Addon>
+            </InputGroup>
           </div>
           <Button className="btn">Add transaction</Button>
         </Form>
