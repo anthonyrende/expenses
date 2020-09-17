@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { GlobalContext } from '../context/GlobalState'
+import { Form, Icon,  Divider, Container, Header, FlexboxGrid, Whisper, Tooltip, Button, InputGroup } from 'rsuite'
 
 export const IncomeExpenses = () => {
   const { transactions } = useContext(GlobalContext)
@@ -19,15 +20,19 @@ export const IncomeExpenses = () => {
     .toFixed(2)
 
     return (
-        <div className="inc-exp-container">
-        <div>
-          <h4>Income</h4>
-  <p className="money plus">{income}</p>
-        </div>
-        <div>
-          <h4>Expense</h4>
-  <p className="money minus">{expense}</p>
-        </div>
-      </div>
+        <Container>
+          <FlexboxGrid justify="space-around">
+            <FlexboxGrid.Item>
+              <h4>Income</h4>
+                <p><Icon icon="plus"/>{income}</p>
+          </FlexboxGrid.Item>
+
+            <FlexboxGrid.Item>
+              <h4>Expenses</h4>
+                <p><Icon icon="minus"/>{expense}</p>
+            </FlexboxGrid.Item>
+          </FlexboxGrid>
+         <Divider/>
+        </Container>
     )
 }
