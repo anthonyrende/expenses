@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-dom'
 
 // Components
 import Nav from "./components/Nav.js"
@@ -12,8 +13,9 @@ import { GlobalProvider } from "./context/GlobalState"
 
 //Styling
 import { Content, FlexboxGrid, Panel } from 'rsuite'
-// import 'rsuite/dist/styles/rsuite-dark.css'
 import 'rsuite/dist/styles/rsuite-default.css'
+// import 'rsuite/dist/styles/rsuite-dark.css'
+
 function App() {
   return (
     <GlobalProvider>

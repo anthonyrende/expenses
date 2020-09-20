@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { NavLink, Link } from 'react-router-dom'
 import {Nav, Navbar, Button, Dropdown, Icon} from 'rsuite'
 
 const styles = {
@@ -18,7 +19,7 @@ const styles = {
 //       </Nav>
 //     );
 //   };
-const Header = ({ seclect, onSelect, ...props }) => {
+const NavBar = ({ seclect, onSelect, ...props }) => {
     const [active, setActive] = useState(false)
     console.log(active)
 
@@ -26,22 +27,34 @@ const Header = ({ seclect, onSelect, ...props }) => {
         // this.setState({ active: activeKey });
         setActive(!active)
       }
+      // <Nav.Item >News</Nav.Item>
+      // <Nav.Item>Products</Nav.Item>
+      const MyLink = React.forwardRef((props, ref) => {
+        const { href, as, ...rest } = props;
+        return (
+          <Link href={href} as={as}>
+            <a ref={ref} {...rest} />
+          </Link>
+        );
+      });
 
+      const NavLink = props => <Nav.Item componentClass={MyLink} {...props} />
     return (
         <div>
         <Navbar.Header>
-            <a href="#" className="navbar-brand logo">Expenses</a>
+            <a href="#">Expenses</a>
         </Navbar.Header>
         <Nav appearance="tabs" reversed justified activeKey={active}  onSelect={onSelect} >
-          <Nav.Item     icon={<Icon icon="home" />}  >Home </Nav.Item>
-          <Nav.Item>Calculator</Nav.Item>
-          <Nav.Item >News</Nav.Item>
-          <Nav.Item>Products</Nav.Item>
-          <Nav.Item>About</Nav.Item>
+        <NavLink   href="/"  icon={<Icon icon="home" />}  >Home </NavLink>
+        <NavLink href="/expenses">Expense Calculator</NavLink>
+          <NavLink href="/fba">FBA Calculator</NavLink>
+          <NavLink >Report</NavLink>
+          <NavLink>Sign in</NavLink>
+          <NavLink>About</NavLink>
         </Nav>
       </div>
     
     )
 }
 
-export default Header
+export default NavBar
