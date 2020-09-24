@@ -1,6 +1,16 @@
 import React, { useState } from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { BrowserRouter as Router, 
+  NavLink, 
+  Link, 
+  Switch,
+  Route,
+  useRouteMatch,
+  useParams } from 'react-router-dom'
 import {Nav, Navbar, Button, Dropdown, Icon} from 'rsuite'
+import { Balance } from './Balance'
+import { IncomeExpenses } from './IncomeExpenses'
+import { TransactionList } from './TransactionList'
+import { AddTransaction } from './AddTransaction'
 
 const styles = {
     marginBottom: 50
@@ -19,7 +29,7 @@ const styles = {
 //       </Nav>
 //     );
 //   };
-const NavBar = ({ seclect, onSelect, ...props }) => {
+export const NavBar = ({ seclect, onSelect, ...props }) => {
     const [active, setActive] = useState(false)
     console.log(active)
 
@@ -40,21 +50,29 @@ const NavBar = ({ seclect, onSelect, ...props }) => {
 
       const NavLink = props => <Nav.Item componentClass={MyLink} {...props} />
     return (
-        <div>
+        <Router>
         <Navbar.Header>
             <a href="#">Expenses</a>
         </Navbar.Header>
         <Nav appearance="tabs" reversed justified activeKey={active}  onSelect={onSelect} >
-        <NavLink   href="/"  icon={<Icon icon="home" />}  >Home </NavLink>
+        <NavLink   href="/home"  icon={<Icon icon="home" />}>Home </NavLink>
         <NavLink href="/expenses">Expense Calculator</NavLink>
           <NavLink href="/fba">FBA Calculator</NavLink>
           <NavLink >Report</NavLink>
           <NavLink>Sign in</NavLink>
           <NavLink>About</NavLink>
         </Nav>
-      </div>
+      </Router>
     
     )
 }
-
-export default NavBar
+export const Main = () => (
+  <Switch>
+    <Route path="/expenses"  component={Balance}>
+      <Balance />
+      <IncomeExpenses />
+      <TransactionList />
+      <AddTransaction />
+    </Route>
+  </Switch>
+);

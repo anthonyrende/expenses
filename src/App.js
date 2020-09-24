@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-dom'
 
 // Components
-import Nav from "./components/Nav.js"
+import { NavBar, Main } from "./components/NavBar.js"
 import { Balance } from "./components/Balance"
 import { IncomeExpenses } from "./components/IncomeExpenses"
 import { TransactionList } from "./components/TransactionList"
@@ -19,14 +19,11 @@ import 'rsuite/dist/styles/rsuite-default.css'
 function App() {
   return (
     <GlobalProvider>
-    <Nav />
+    <NavBar />
       <Content>
         <FlexboxGrid justify="center">
           <FlexboxGrid.Item colspan={12} md={6}>
-              <Balance />
-              <IncomeExpenses />
-              <TransactionList />
-              <AddTransaction />
+             <Main />
           </FlexboxGrid.Item>
         </FlexboxGrid>
       </Content>
