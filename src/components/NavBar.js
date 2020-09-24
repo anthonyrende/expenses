@@ -55,8 +55,8 @@ export const NavBar = ({ seclect, onSelect, ...props }) => {
             <a href="#">Expenses</a>
         </Navbar.Header>
         <Nav appearance="tabs" reversed justified activeKey={active}  onSelect={onSelect} >
-        <NavLink   href="/home"  icon={<Icon icon="home" />}>Home </NavLink>
-        <NavLink href="/expenses">Expense Calculator</NavLink>
+          <Link  href="/home"  icon={<Icon icon="home" />}>Home </Link>
+          <Link href="/expenses">Expense Calculator</Link>
           <NavLink href="/fba">FBA Calculator</NavLink>
           <NavLink >Report</NavLink>
           <NavLink>Sign in</NavLink>
@@ -68,7 +68,7 @@ export const NavBar = ({ seclect, onSelect, ...props }) => {
 }
 export const Main = () => (
   <Switch>
-    <Route path="/expenses"  component={Balance}>
+    <Route path="/expenses">
       <Balance />
       <IncomeExpenses />
       <TransactionList />
